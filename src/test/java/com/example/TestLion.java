@@ -15,13 +15,14 @@ import java.util.List;
 public class TestLion {
 
 
-    // Изолирование класса Lion от Feline
+    // Изолирование класса Lion от Feline в тестах
     @Mock
     Lion lion;
 
 
     /**
      * Тестирование конструктора класса {@link Lion}
+     *
      * @throws Exception
      */
 
@@ -67,7 +68,7 @@ public class TestLion {
      * Тестирование метода {@link Lion#getKittens()}
      */
     @Test
-    public void testMethodLionGetKittens(){
+    public void testMethodLionGetKittens() {
 
         // Кейс когда в метод getKittens() класса Lion возвращается "1"
         Mockito.when(lion.getKittens()).thenReturn(1);
