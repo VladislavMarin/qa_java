@@ -9,6 +9,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.List;
 
+import static org.mockito.ArgumentMatchers.*;
+
 
 @RunWith(MockitoJUnitRunner.class)
 
@@ -17,15 +19,13 @@ public class TestLion {
 
     // Изолирование класса Lion от Feline в тестах
     @Mock
-    Lion lion;
-
+    Feline feline;
 
     /**
      * Тестирование конструктора класса {@link Lion}
      *
      * @throws Exception
      */
-
     @Test
     public void testConstrLion() throws Exception {
         Lion lion = new Lion("Самец");
@@ -41,14 +41,24 @@ public class TestLion {
     }
 
     /**
+     * Тестирование метода {@link Lion#getKittens()}
+     */
+    @Test
+    public void testMethodLionGetKittens() {
+        Mockito.when(feline.getKittens()).thenReturn(1);
+        Lion lion = new Lion(feline);
+        Assert.assertEquals(lion.getKittens(), 1);
+    }
+
+    /**
      * Тестирование метода {@link Lion#getFood()}
      */
     @Test
     public void testMethodLionGetFood() {
-
         // Кейс когда в метод getFood() класса Lion возвращается "List.of("Животные", "Птицы", "Рыба")"
         try {
-            Mockito.when(lion.getFood()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
+            Mockito.when(feline.getFood(any())).thenReturn(List.of("Животные", "Птицы", "Рыба"));
+            Lion lion = new Lion(feline);
             Assert.assertEquals(lion.getFood(), List.of("Животные", "Птицы", "Рыба"));
         } catch (Exception e) {
             Assert.fail("Внештатная ситуация");
@@ -56,22 +66,11 @@ public class TestLion {
 
         // Кейс когда в метод getFood() класса Lion возвращается Exception
         try {
-            Mockito.when(lion.getFood()).thenThrow(new Exception("Неизвестный вид животного, используйте значение Травоядное или Хищник"));
-            lion.getFood();
+            Mockito.when(feline.getFood(any())).thenThrow(new Exception("Неизвестный вид животного, используйте значение Травоядное или Хищник"));
+            new Lion(feline).getFood();
             Assert.fail();
         } catch (Exception e) {
             Assert.assertEquals("Неизвестный вид животного, используйте значение Травоядное или Хищник", e.getMessage());
         }
-    }
-
-    /**
-     * Тестирование метода {@link Lion#getKittens()}
-     */
-    @Test
-    public void testMethodLionGetKittens() {
-
-        // Кейс когда в метод getKittens() класса Lion возвращается "1"
-        Mockito.when(lion.getKittens()).thenReturn(1);
-        Assert.assertEquals(lion.getKittens(), 1);
     }
 }

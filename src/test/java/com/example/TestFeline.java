@@ -68,6 +68,6 @@ public class TestFeline {
      */
     @Test
     public void TestMethodFelineGetKittensWithParam() {
-        Assert.assertEquals(feline.getKittens(Mockito.anyInt()), Mockito.anyInt());
+        Assert.assertEquals(feline.getKittens(2), 2);
     }
 }
