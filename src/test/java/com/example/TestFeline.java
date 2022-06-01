@@ -68,6 +68,6 @@ public class TestFeline {
      */
     @Test
     public void TestMethodFelineGetKittensWithParam() {
-        Assert.assertEquals(feline.getKittens(2), 2);
+      Assert.assertEquals(feline.getKittens(1), 1);
     }
 }

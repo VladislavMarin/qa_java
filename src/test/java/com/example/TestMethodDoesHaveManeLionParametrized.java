@@ -4,15 +4,14 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.mockito.Mockito;
 
 @RunWith(Parameterized.class)
-public class TestLionParametrized {
+public class TestMethodDoesHaveManeLionParametrized {
     private final String hasMane;
     private final boolean expected;
 
 
-    public TestLionParametrized(String hasMane, boolean expected) {
+    public TestMethodDoesHaveManeLionParametrized(String hasMane, boolean expected) {
         this.hasMane = hasMane;
         this.expected = expected;
     }
@@ -27,7 +26,9 @@ public class TestLionParametrized {
     }
 
     /**
-     * Параметризованный тест 
+     * Параметризованный тест метода {@link Lion#doesHaveMane()}.
+     * Сделал этот тест, тк требуется параметризованный тест для проверки задания.
+     * Такие же проверки выполняются в {@link TestLion#testConstrLion()} при тестировании конструктора класса Lion
      * @throws Exception
      */
     @Test

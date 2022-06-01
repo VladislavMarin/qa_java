@@ -13,7 +13,6 @@ import static org.mockito.ArgumentMatchers.*;
 
 
 @RunWith(MockitoJUnitRunner.class)
-
 public class TestLion {
 
 
