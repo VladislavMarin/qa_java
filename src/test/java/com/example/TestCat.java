@@ -12,7 +12,7 @@ import java.util.List;
 
 @RunWith(MockitoJUnitRunner.class)
 public class TestCat {
-    Feline feline;
+//    Feline feline;
     Cat cat;
 
     @Before
@@ -21,7 +21,7 @@ public class TestCat {
     }
 
     @Mock
-    Predator predator;
+    Feline feline;
 
     @Test
     public void testMethodCatGetSound() {
@@ -30,7 +30,7 @@ public class TestCat {
 
     @Test
     public void testMethodCatGetFood() throws Exception {
-        Mockito.when(predator.eatMeat()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
+        Mockito.when(feline.eatMeat()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
         Assert.assertEquals(cat.getFood(), List.of("Животные", "Птицы", "Рыба"));
     }
 }
