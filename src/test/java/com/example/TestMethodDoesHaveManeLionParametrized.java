@@ -10,6 +10,8 @@ public class TestMethodDoesHaveManeLionParametrized {
     private final String hasMane;
     private final boolean expected;
 
+    private Feline feline;
+
 
     public TestMethodDoesHaveManeLionParametrized(String hasMane, boolean expected) {
         this.hasMane = hasMane;
@@ -33,7 +35,7 @@ public class TestMethodDoesHaveManeLionParametrized {
      */
     @Test
     public void TestMethodLionDoesHaveMane() throws Exception {
-        Lion lion = new Lion(hasMane);
+        Lion lion = new Lion(hasMane, feline);
         boolean actual = lion.doesHaveMane();
         Assert.assertEquals(actual, expected);
 

@@ -19,31 +19,16 @@ public class TestFeline {
         feline = new Feline();
     }
 
-    @Mock
-    Feline felineMock;
-
     /**
      * Тестирование метода класса {@link Feline#eatMeat()}
      */
     @Test
     public void TestMethodFelineEatMeat() {
 
-        //Кейс когда метод eatMeat() класса Feline возвращает "List.of("Животные", "Птицы", "Рыба")"
-
         try {
             Assert.assertEquals(feline.eatMeat(), List.of("Животные", "Птицы", "Рыба"));
         } catch (Exception e) {
             Assert.fail("Внештатная ситуация");
-        }
-
-        //Кейс когда метод eatMeat() класса Feline возвращает Exception
-
-        try {
-            Mockito.when(felineMock.eatMeat()).thenThrow(new Exception("Неизвестный вид животного, используйте значение Травоядное или Хищник"));
-            felineMock.eatMeat();
-            Assert.fail();
-        } catch (Exception e) {
-            Assert.assertEquals("Неизвестный вид животного, используйте значение Травоядное или Хищник", e.getMessage());
         }
     }
 
@@ -61,13 +46,5 @@ public class TestFeline {
     @Test
     public void TestMethodFelineGetKittens() {
         Assert.assertEquals(feline.getKittens(), 1);
-    }
-
-    /**
-     * Тестирование метода класса {@link Feline#getKittens(int)}
-     */
-    @Test
-    public void TestMethodFelineGetKittensWithParam() {
-      Assert.assertEquals(feline.getKittens(1), 1);
     }
 }

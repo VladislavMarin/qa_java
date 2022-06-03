@@ -22,17 +22,16 @@ public class TestLion {
 
     /**
      * Тестирование конструктора класса {@link Lion}
-     *
      * @throws Exception
      */
     @Test
     public void testConstrLion() throws Exception {
-        Lion lion = new Lion("Самец");
+        Lion lion = new Lion("Самец", feline);
         Assert.assertTrue(lion.doesHaveMane());
-        Lion lionFemale = new Lion("Самка");
+        Lion lionFemale = new Lion("Самка",feline);
         Assert.assertFalse(lionFemale.doesHaveMane());
         try {
-            new Lion("123");
+            new Lion("123",feline);
             Assert.fail("Внештатная ситуация ситуация");
         } catch (Exception t) {
             Assert.assertEquals("Используйте допустимые значения пола животного - самец или самка", t.getMessage());
@@ -43,9 +42,9 @@ public class TestLion {
      * Тестирование метода {@link Lion#getKittens()}
      */
     @Test
-    public void testMethodLionGetKittens() {
+    public void testMethodLionGetKittens() throws Exception {
         Mockito.when(feline.getKittens()).thenReturn(1);
-        Lion lion = new Lion(feline);
+        Lion lion = new Lion("Самец", feline);
         Assert.assertEquals(lion.getKittens(), 1);
     }
 
@@ -57,7 +56,7 @@ public class TestLion {
         // Кейс когда в метод getFood() класса Lion возвращается "List.of("Животные", "Птицы", "Рыба")"
         try {
             Mockito.when(feline.getFood(any())).thenReturn(List.of("Животные", "Птицы", "Рыба"));
-            Lion lion = new Lion(feline);
+            Lion lion = new Lion("Самец", feline);
             Assert.assertEquals(lion.getFood(), List.of("Животные", "Птицы", "Рыба"));
         } catch (Exception e) {
             Assert.fail("Внештатная ситуация");
@@ -66,7 +65,7 @@ public class TestLion {
         // Кейс когда в метод getFood() класса Lion возвращается Exception
         try {
             Mockito.when(feline.getFood(any())).thenThrow(new Exception("Неизвестный вид животного, используйте значение Травоядное или Хищник"));
-            new Lion(feline).getFood();
+            new Lion("Самец", feline).getFood();
             Assert.fail();
         } catch (Exception e) {
             Assert.assertEquals("Неизвестный вид животного, используйте значение Травоядное или Хищник", e.getMessage());

@@ -28,7 +28,6 @@ public class TestMethodFelineGetKittensParametrized {
 
     /**
      * Параметризованный тест {@link Feline#getKittens(int)}.
-     * Тест расширяет дипазон значений параметров для {@link TestFeline#TestMethodFelineGetKittensWithParam()}
      */
     @Test
     public void TestMethodFelineGetKittensParametrizedTest(){
